@@ -2,13 +2,16 @@ import React from "react";
 
 function Container() {
   return (
-    <div>
+    <div className="bg-gray-300 text-green-600 text-center mx-20 my-5 py-5">
+      {" "}
+      <h2 className="font-bold"> Delicious Food, Delivered To You </h2>
       <p>
-        {" "}
-        Delicious Food, Delivered To You Choose your favorite meal from our
-        broad selection of available meals and enjoy a delicious lunch or dinner
-        at home. All our meals are cooked with high-quality ingredients,
-        just-in-time and of course by experienced chefs!
+        Choose your favorite meal from our broad selection of available meals
+        and enjoy a delicious lunch or dinner at home.
+      </p>
+      <p>
+        All our meals are cooked with high-quality ingredients, just-in-time and
+        of course by experienced chefs!
       </p>
     </div>
   );
