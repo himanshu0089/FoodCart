@@ -4,6 +4,7 @@ import {
   useState,
   useEffect,
 } from "react";
+import { menuList } from "./menuList";
 
 const cartContext = createContext();
 
@@ -26,10 +27,22 @@ function CartProvider({ children }) {
     console.log(itemRef);
   }, [itemRef]);
 
+  const totalCartAmount=()=>{
+    let totalAmount=0;
+    for (const item in itemRef){
+      if(itemRef[item]>0){
+       let itemInfo=menuList.find((product)=>product.id===item)
+       totalAmount+=itemInfo.price*itemRef[item]
+      }
+    }
+    return totalAmount;
+  }
+
   const contextValue = {
     itemRef,
     addToCart,
-    RemoveFromCart
+    RemoveFromCart,
+    totalCartAmount
   };
   return (
     <cartContext.Provider value={contextValue}>{children}</cartContext.Provider>
