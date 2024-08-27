@@ -1,21 +1,39 @@
-import { createContext,useContext, useReducer, useState } from "react";
-import { addToCartReducer } from "./addToCartReducer";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+} from "react";
 
-const cartContext=createContext();
-const initialState={
-    totalItems:0,
-    addItems:[],
-    removeItems:[]
-}
+const cartContext = createContext();
+
 function CartProvider({ children }) {
+  const { itemCounter, setItemCounter } = useState(0);
+  const [itemRef, setItemRef] = useState({});
 
-    const [state, dispatch] = useReducer(addToCartReducer, initialState);
+  const addToCart = (item_id) => {
+    if (!itemRef[item_id]) {
+      setItemRef((prev) => ({ ...prev, [item_id]: 1 }));
+    } else {
+      setItemRef((prev) => ({ ...prev, [item_id]: prev[item_id] + 1 }));
+    }
+  };
+  const RemoveFromCart = (item_id) => {
+    setItemRef((prev) => ({ ...prev, [item_id]: prev[item_id] - 1 }));
+  };
 
-    return (
-        <cartContext.Provider value={{ state, dispatch }}>
-            {children}
-        </cartContext.Provider>
-    );
+  useEffect(() => {
+    console.log(itemRef);
+  }, [itemRef]);
+
+  const contextValue = {
+    itemRef,
+    addToCart,
+    RemoveFromCart
+  };
+  return (
+    <cartContext.Provider value={contextValue}>{children}</cartContext.Provider>
+  );
 }
-const useCart=()=>useContext(cartContext)
-export {CartProvider,useCart}
+const useCart = () => useContext(cartContext);
+export { CartProvider, useCart };

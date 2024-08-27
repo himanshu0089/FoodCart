@@ -3,31 +3,22 @@ import { useState } from "react";
 import Navbar from "./Navbar";
 import { useCart } from "./cart-context";
 import Container from "./Container";
+import { menuList } from "./menuList";
 
-const menuList = [
-  { name: "Pav Bhaji", description: "The Mumbai Style", price: 80 },
-  { name: "Maggi", description: "The Veggie and Spicy treat", price: 50 },
-  { name: "Momos", description: "Can't let it go", price: 70 },
-  { name: "Crispy Corn", description: "Taste Heavenly ", price: 100 },
-  { name: "Ice Cream", description: "Zinger the Taste", price: 50 },
-];
-function Menu() {
-  const { state, dispatch } = useCart();
-  const [modifier, setModifier] = useState(1);
-  const inputRef = useRef(0);
+function Menu({setItemCounter}) { 
 
+  const {addToCart, RemoveFromCart}=useCart()
   const setValue = (e) => {
-    //  console.log(e);
-    // state.temp=e.target.value
-    // setModifier(e.target.value)
-
-    console.log(modifier);
+     console.log(modifier);
   };
-
+  const handleCart=(id)=>{
+    setItemCounter(prev=>prev+1)
+    addToCart(id)
+  }
   return (
     <div className="bg-gray-500 flex flex-col">
       < Container />
-      {/* < Navbar modifier={modifier}/> */}
+     
       {menuList.map((item, id) => {
         return (
 
@@ -47,7 +38,7 @@ function Menu() {
                   min="1"
                   max="5"
                   step="1"
-                  ref={inputRef}
+      
                   onChange={setValue}
                 />
               </label>
@@ -55,7 +46,8 @@ function Menu() {
               <div className="">
               <button className="bg-lime-200 rounded-3xl m-2 px-5 py-2"
                 onClick={() =>
-                  dispatch({ payload: item, modifier: inputRef.current })
+                    handleCart(item.id)
+                    
                 }
               >
                 {" "}

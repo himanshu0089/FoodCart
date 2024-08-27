@@ -1,14 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { useCart } from "./cart-context";
-import CartItems from "./cartItems";
+// import CartItems from "./cartItems"; 
 import CartIcon from "./CartIcon";
 
-function Navbar({ modifier }) {
-  const { state } = useCart();
-  const [showCart, setShowCart] = useState(false);
-
-  // console.log({state})
+function Navbar({showCart,setShowCart, itemCounter }) {
   return (
     <div className="bg-lime-200 flex justify-between h-[70px] z-1 fixed... ">
       <div className="mx-20 my-5 font-bold">
@@ -18,15 +14,15 @@ function Navbar({ modifier }) {
       <div className="mx-20 my-5 font-bold">
         <button
           className=""
-          onClick={() => setShowCart((showCart) => !showCart)}
+          onClick={() => setShowCart((prev) => !prev)}
         >
-           {/* <CartIcon /> */}
-          Your Cart {state.totalItems}
+
+          Your Cart  {itemCounter}
          
         </button>
       </div>
 
-      {showCart && <CartItems />}
+      
     </div>
   );
 }

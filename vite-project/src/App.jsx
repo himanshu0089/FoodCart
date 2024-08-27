@@ -5,12 +5,18 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Menu from "./components/Menu";
 import Footer from "./components/Footer";
+import CartItems from "./components/cartItems"; 
+
 function App() {
+  const [showCart, setShowCart] = useState(true); 
+  const[itemCounter,setItemCounter]=useState(0)
+
   return (
     <>
       <div>
-        <Navbar />
-        <Menu />
+        <Navbar showCart={showCart} setShowCart={setShowCart} itemCounter={itemCounter} />
+        {showCart && <CartItems />} 
+        <Menu setItemCounter={setItemCounter}/>
 
         <Footer />
       </div>

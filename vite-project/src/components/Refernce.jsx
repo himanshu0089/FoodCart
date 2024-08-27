@@ -21,3 +21,21 @@
 //   temp: 0,
 //   addItems: {},
 // };
+
+// code refernce for redux(reducer):
+
+// const { state, dispatch } = useCart(); 
+
+// dispatch({ payload: item,modifier: inputRef.current })
+
+// const initialState={
+//     totalItems:0,
+//     itemRef:{},
+//     // addItems:[{}],
+//     // removeItems:[]
+// }
+
+
+    // const [state, dispatch] = useReducer(addToCartReducer, initialState);
+
+    // value={ state, dispatch } 
