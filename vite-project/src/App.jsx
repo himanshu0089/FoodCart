@@ -15,7 +15,7 @@ function App() {
     <>
       <div>
         <Navbar showCart={showCart} setShowCart={setShowCart} itemCounter={itemCounter} />
-        {showCart && <CartItems />} 
+        {showCart && <CartItems setShowCart={setShowCart} setItemCounter={setItemCounter} />} 
         <Menu setItemCounter={setItemCounter}/>
 
         <Footer />
